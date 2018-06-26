@@ -29,11 +29,11 @@ with open(pyrollcsv, 'r') as csvfile:
     date_decrease = date[index_decrease + 1]
 
     
-    print("Financial Analysis: "+'\n'+'-' * 25+'\n'+
-    "Total Months: " + str(month)+'\n'+
-    "Total Net Amount: $" + str(total_amount)+'\n'+
-    "Average: $" + str(average)+'\n'+
-    "Greatest Increase in Profits: " + date_increase + " ($"+str(greatest_increase)+")"+'\n'+
+    print("Financial Analysis: " + '\n' + '-' * 25 + '\n' +
+    "Total Months: " + str(month) + '\n' +
+    "Total Net Amount: $" + str(total_amount) + '\n' +
+    "Average: $" + str(average) + '\n' +
+    "Greatest Increase in Profits: " + date_increase + " ($"+str(greatest_increase)+")" + '\n' +
     "Greatest Decrease in Profits: " + date_decrease + " ($"+str(greatest_decrease)+")")
 
 
