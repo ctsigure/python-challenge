@@ -31,8 +31,13 @@ average_sentence_length = letter_count / sentence_count
 
 
 
-print("Paragraph Analysis" + '\n'+'-' * 25 + '\n' +
-"Approximate Word Count: " + str(word_count) + '\n' +
-"Approximate Sentence Count: " + str(sentence_count) + '\n' +
-"Average Letter Count: " + str(average_letter_count) + '\n' +
-"Average Sentence Length: " + str(average_sentence_length))
+my_result = "Paragraph Analysis" + '\n'+'-' * 25 + '\n' +\
+"Approximate Word Count: " + str(word_count) + '\n' +\
+"Approximate Sentence Count: " + str(sentence_count) + '\n' +\
+"Average Letter Count: " + str(average_letter_count) + '\n' +\
+"Average Sentence Length: " + str(average_sentence_length)
+
+print(my_result)
+
+with open(os.path.join(os.path.dirname(__file__),"Paragraph Analysis.txt"), "w") as file:
+    file.write(my_result)

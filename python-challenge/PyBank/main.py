@@ -45,10 +45,15 @@ with open(pybankcsv, 'r') as csvfile:
 
 
 
-    print("Election Results" + '\n' + '-' * 25 + '\n' +
-    "Total Votes: " + str(vote) + '\n' + '-' * 25 + '\n' +
+    my_result = "Election Results" + '\n' + '-' * 25 + '\n' +\
+    "Total Votes: " + str(vote) + '\n' + '-' * 25 + '\n' +\
     "Khan: " + str(percent_khan) +'% (' + str(khan) + ')' + '\n'
-    "Correy: " + str(percent_correy) + '% (' + str(correy) + ')' + '\n' +
-    "Li: " + str(percent_li) + '% (' + str(li) + ')' + '\n' +
-    "O'Tooley: " + str(percent_otooley) + '% ('+str(otooley) + ')' + '\n' + '-' * 25 + '\n' +
-    "Winner: " + winner)
+    "Correy: " + str(percent_correy) + '% (' + str(correy) + ')' + '\n' +\
+    "Li: " + str(percent_li) + '% (' + str(li) + ')' + '\n' +\
+    "O'Tooley: " + str(percent_otooley) + '% ('+str(otooley) + ')' + '\n' + '-' * 25 + '\n' +\
+    "Winner: " + winner
+    print(my_result)
+
+    with open(os.path.join(os.path.dirname(__file__),"Election Results.txt"), "w") as file:
+        file.write(my_result)
+
