@@ -17,12 +17,22 @@ with open(pyrollcsv, 'r') as csvfile:
         month += 1
         date.append(row[0])
         amount.append(row[1])
-
-        
-        
+    
+    
     amount.pop(0)
     amount = list(map(int,amount))
     total_amount = sum(amount)
+
+    date.pop(0)
+    new_date = []
+    months = []
+    years = []
+    for d in date:
+        new_date.append(d.split('-'))
+    
+    for k in new_date:
+        months.append(k[0])
+        years.append(k[1])   
 
 
     each_month = []
@@ -36,12 +46,12 @@ with open(pyrollcsv, 'r') as csvfile:
 
     total_each_month = sum(each_month)
     average = total_each_month / month
-    greatest_increase = max(amount)
-    greatest_decrease = min(amount)
-    index_increase = amount.index(greatest_increase)
-    index_decrease = amount.index(greatest_decrease)
-    date_increase = date[index_increase + 1]
-    date_decrease = date[index_decrease + 1]
+    greatest_increase = max(each_month)
+    greatest_decrease = min(each_month)
+    index_increase = each_month.index(greatest_increase)
+    index_decrease = each_month.index(greatest_decrease)
+    date_increase = months[index_increase + 1] + "-" + years[index_increase + 1]
+    date_decrease = months[index_decrease + 1] + "-" + years[index_decrease + 1]
 
     
     my_result = "Financial Analysis: " + '\n' + '-' * 25 + '\n' + \
