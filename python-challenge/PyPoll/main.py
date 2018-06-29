@@ -7,9 +7,9 @@ pyrollcsv = os.path.join(os.path.dirname(__file__),"Resources","budget_data.csv"
 
 with open(pyrollcsv, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
+    header = next(csvreader)
 
-    
-    month = -1
+    month = 0
     amount = []
     date = []
     
@@ -18,12 +18,10 @@ with open(pyrollcsv, 'r') as csvfile:
         date.append(row[0])
         amount.append(row[1])
     
-    
-    amount.pop(0)
     amount = list(map(int,amount))
     total_amount = sum(amount)
 
-    date.pop(0)
+    
     new_date = []
     months = []
     years = []
@@ -42,10 +40,9 @@ with open(pyrollcsv, 'r') as csvfile:
         value_each_month = amount[i + 1] - amount[i]
         each_month.append(value_each_month)
         i += 1
-    
 
     total_each_month = sum(each_month)
-    average = total_each_month / month
+    average = round(total_each_month / len(each_month),2)
     greatest_increase = max(each_month)
     greatest_decrease = min(each_month)
     index_increase = each_month.index(greatest_increase)
