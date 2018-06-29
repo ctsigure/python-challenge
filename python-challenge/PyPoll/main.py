@@ -45,7 +45,6 @@ with open(pyrollcsv, 'r') as csvfile:
     
 
     total_each_month = sum(each_month)
-    print(total_each_month)
     average = total_each_month / month
     greatest_increase = max(each_month)
     greatest_decrease = min(each_month)
@@ -62,7 +61,7 @@ with open(pyrollcsv, 'r') as csvfile:
                 "Greatest Increase in Profits: " + date_increase + " ($"+str(greatest_increase)+")" + '\n' +\
                 "Greatest Decrease in Profits: " + date_decrease + " ($"+str(greatest_decrease)+")"
    
-    #print(my_result)
+    print(my_result)
 
 
 with open(os.path.join(os.path.dirname(__file__),"Financial Analysis.txt"), "w") as file:

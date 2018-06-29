@@ -47,7 +47,7 @@ with open(pybankcsv, 'r') as csvfile:
 
     my_result = "Election Results" + '\n' + '-' * 25 + '\n' +\
     "Total Votes: " + str(vote) + '\n' + '-' * 25 + '\n' +\
-    "Khan: " + str(percent_khan) +'% (' + str(khan) + ')' + '\n'
+    "Khan: " + str(percent_khan) +'% (' + str(khan) + ')' + '\n'+\
     "Correy: " + str(percent_correy) + '% (' + str(correy) + ')' + '\n' +\
     "Li: " + str(percent_li) + '% (' + str(li) + ')' + '\n' +\
     "O'Tooley: " + str(percent_otooley) + '% ('+str(otooley) + ')' + '\n' + '-' * 25 + '\n' +\
