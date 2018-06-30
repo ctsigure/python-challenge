@@ -1,71 +1,59 @@
 import os
 import csv
-import functools
 
-pyrollcsv = os.path.join(os.path.dirname(__file__),"Resources","budget_data.csv")
+pybankcsv = os.path.join(os.path.dirname(__file__),"Resources","election_data.csv")
 
+with open(pybankcsv, 'r') as csvfile:
+    csvreader = csv.reader(csvfile,delimiter=',')
 
-with open(pyrollcsv, 'r') as csvfile:
-    csvreader = csv.reader(csvfile, delimiter=',')
-    header = next(csvreader)
-
-    month = 0
-    amount = []
-    date = []
-    
+    vote = -1
+    can_list = []
     for row in csvreader:
-        month += 1
-        date.append(row[0])
-        amount.append(row[1])
-    
-    amount = list(map(int,amount))
-    total_amount = sum(amount)
+        vote += 1
+        can_list.append(row[2])
+    can_list.pop(0)
 
-    
-    new_date = []
-    months = []
-    years = []
-    for d in date:
-        new_date.append(d.split('-'))
-    
-    for k in new_date:
-        months.append(k[0])
-        years.append(k[1])   
+    khan = 0
+    correy = 0
+    li = 0
+    otooley = 0
+    for i in can_list:
+        if i == "Khan":
+            khan += 1
+        elif i == "Correy":
+            correy += 1
+        elif i == "Li":
+            li += 1
+        else:
+            otooley += 1
 
+    percent_khan = round(khan/vote * 100, 2)
+    percent_correy = round(correy/vote * 100,2)
+    percent_li = round(li/vote * 100,2)
+    percent_otooley = round(otooley/vote * 100,2)
 
-    each_month = []
-    value_each_month = 0
-    i = 0
-    while i < len(amount) - 1:
-        value_each_month = amount[i + 1] - amount[i]
-        each_month.append(value_each_month)
-        i += 1
-
-    total_each_month = sum(each_month)
-    average = round(total_each_month / len(each_month),2)
-    greatest_increase = max(each_month)
-    greatest_decrease = min(each_month)
-    index_increase = each_month.index(greatest_increase)
-    index_decrease = each_month.index(greatest_decrease)
-    date_increase = months[index_increase + 1] + "-" + years[index_increase + 1]
-    date_decrease = months[index_decrease + 1] + "-" + years[index_decrease + 1]
-
-    
-    my_result = "Financial Analysis: " + '\n' + '-' * 25 + '\n' + \
-                "Total Months: " + str(month) + '\n' +\
-                "Total Net Amount: $" + str(total_amount) + '\n' +\
-                "Average: $" + str(average) + '\n' +\
-                "Greatest Increase in Profits: " + date_increase + " ($"+str(greatest_increase)+")" + '\n' +\
-                "Greatest Decrease in Profits: " + date_decrease + " ($"+str(greatest_decrease)+")"
+    winner_cals = max(khan,correy,li,otooley)
+    cans = ["Khan","Correy","Li","O'Tooley"]
+    total_per_can = [khan, correy, li, otooley]
+    new_list = list(zip(cans,total_per_can))
    
+    winner = 0
+    for j in new_list:
+        if winner_cals == j[1]:
+            winner = j[0]
+            
+
+
+
+    my_result = "Election Results" + '\n' + '-' * 25 + '\n' +\
+    "Total Votes: " + str(vote) + '\n' + '-' * 25 + '\n' +\
+    "Khan: " + str(percent_khan) +'% (' + str(khan) + ')' + '\n'+\
+    "Correy: " + str(percent_correy) + '% (' + str(correy) + ')' + '\n' +\
+    "Li: " + str(percent_li) + '% (' + str(li) + ')' + '\n' +\
+    "O'Tooley: " + str(percent_otooley) + '% ('+str(otooley) + ')' + '\n' + '-' * 25 + '\n' +\
+    "Winner: " + winner
     print(my_result)
 
-
-with open(os.path.join(os.path.dirname(__file__),"Financial Analysis.txt"), "w") as file:
-    file.write(my_result)
-
-
-
-
-   
+    with open(os.path.join(os.path.dirname(__file__),"Election Results.txt"), "w") as file:
+        file.write(my_result)
 
